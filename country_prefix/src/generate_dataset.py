@@ -1,4 +1,4 @@
-# python ptpo_country/src/generate_dataset.py --save_dir ptpo_country/data/
+# python country_prefix2/utils/generate_dataset.py --save_dir country_prefix2/data
 
 from datasets import load_dataset
 import ast
@@ -8,7 +8,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import os
 import argparse
-import numpy as np
 
 def extract_curly_braces(string):
     # Using regular expression to find the substring within curly braces
