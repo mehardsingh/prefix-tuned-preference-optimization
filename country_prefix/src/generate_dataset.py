@@ -1,4 +1,4 @@
-# python country_prefix2/utils/generate_dataset.py --save_dir country_prefix2/data
+# python country_prefix/src/generate_dataset.py --save_dir country_prefix/data
 
 from datasets import load_dataset
 import ast
@@ -116,9 +116,14 @@ def save_dataset(dataset, country2code, save_dir):
     return dataset_df
 
 def save_splits(dataset_df, save_dir, test_size=0.2):
-    train_df, test_df = train_test_split(dataset_df, test_size=test_size, random_state=42)
+    unique_question_ids = dataset_df["question_id"].unique()
+    train_qids, test_qids = train_test_split(unique_question_ids, test_size=test_size, random_state=42)
+    train_df = dataset_df[dataset_df["question_id"].isin(train_qids)]
+    test_df = dataset_df[dataset_df["question_id"].isin(test_qids)]
+
     train_df.to_csv(os.path.join(save_dir, "train_ds.csv"))
     test_df.to_csv(os.path.join(save_dir, "test_ds.csv"))
+
     return train_df, test_df
 
 def main(args):

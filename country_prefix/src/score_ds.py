@@ -1,11 +1,10 @@
 from torch.utils.data import Dataset
 import torch
-from transformers import AutoTokenizer
 import pandas as pd
 import os
 
 class Score_DS(Dataset):
-    def __init__(self, tokenizer, join_fn, max_length, questions, options, scores, country_ids):
+    def __init__(self, tokenizer, join_fn, max_length, questions, options, scores, countries):
         self.tokenizer = tokenizer
         self.join_fn = join_fn
         self.max_length = max_length
@@ -13,7 +12,7 @@ class Score_DS(Dataset):
         self.questions = questions
         self.options = options
         self.scores = scores
-        self.country_ids = country_ids
+        self.countries = countries
     
     def __len__(self):
         return len(self.questions)
@@ -22,20 +21,19 @@ class Score_DS(Dataset):
         question = self.questions[idx]
         option = self.options[idx]
         score = self.scores[idx]
-        country_id = self.country_ids[idx]
+        country = self.countries[idx]
 
-        # prompt = question + self.tokenizer.sep_token + option
-        prompt = self.join_fn(question, option)
+        prompt = self.join_fn(country, question, option)
         prompt_enc = self.tokenizer(prompt, truncation=True, padding='max_length', max_length=self.max_length, return_tensors='pt')
         
         return {
             'input_ids': prompt_enc['input_ids'].squeeze(),
             'attention_mask': prompt_enc['attention_mask'].squeeze(),
             'labels': torch.tensor(score, dtype=torch.float),
-            'country_id': torch.tensor(country_id, dtype=torch.int64)
+            'countries': country
         }
     
-def get_train_test_ds(country, data_dir, model_name, tokenizer, join_fn, max_length):
+def get_train_test_ds(country, data_dir, tokenizer, join_fn, max_length):
     train_df = pd.read_csv(os.path.join(data_dir, "train_ds.csv"), keep_default_na=False)
     test_df = pd.read_csv(os.path.join(data_dir, "test_ds.csv"), keep_default_na=False)
 
@@ -44,7 +42,7 @@ def get_train_test_ds(country, data_dir, model_name, tokenizer, join_fn, max_len
         test_df = test_df[test_df["country"] == country]
 
     print("Train-Test Split: {:.2f}-{:.2f}%".format(100*len(train_df)/(len(train_df)+len(test_df)), 100*len(test_df)/(len(train_df)+len(test_df))))
-    # tokenizer, join_fn, max_length, questions, options, scores, country_ids
+
     train_ds = Score_DS(
         tokenizer=tokenizer, 
         join_fn=join_fn,
@@ -52,7 +50,7 @@ def get_train_test_ds(country, data_dir, model_name, tokenizer, join_fn, max_len
         questions=list(train_df["question"]),
         options=list(train_df["option"]),
         scores=list(train_df["score"]),
-        country_ids=list(train_df["country_id"])
+        countries=list(train_df["country"])
     )
 
     test_ds = Score_DS(
@@ -62,7 +60,7 @@ def get_train_test_ds(country, data_dir, model_name, tokenizer, join_fn, max_len
         questions=list(test_df["question"]),
         options=list(test_df["option"]),
         scores=list(test_df["score"]),
-        country_ids=list(test_df["country_id"])
+        countries=list(test_df["country"])
     )
 
     return train_ds, test_ds, train_df, test_df

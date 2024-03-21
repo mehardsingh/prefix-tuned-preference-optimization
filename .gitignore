@@ -2,3 +2,4 @@
 slurm*
 checkpoint*
 *data
+env/
