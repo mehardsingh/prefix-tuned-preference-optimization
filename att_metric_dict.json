@@ -1,0 +1,102 @@
+{
+    "B_COUNTRY": {
+        "mean_alignment": 0.8546154896399387,
+        "min_alignment": 0.7551885141118893
+    },
+    "G_TOWNSIZE": {
+        "mean_alignment": 0.9620911301789553,
+        "min_alignment": 0.9291281188080948
+    },
+    "G_TOWNSIZE2": {
+        "mean_alignment": 0.9619667170084,
+        "min_alignment": 0.9343776178492881
+    },
+    "H_SETTLEMENT": {
+        "mean_alignment": 0.9609875958763133,
+        "min_alignment": 0.9268619868332515
+    },
+    "H_URBRURAL": {
+        "mean_alignment": 0.9442129808749355,
+        "min_alignment": 0.9442129808749355
+    },
+    "E1_LITERACY": {
+        "mean_alignment": 0.9308889016093711,
+        "min_alignment": 0.9308889016093711
+    },
+    "Q260": {
+        "mean_alignment": 0.9784271397289519,
+        "min_alignment": 0.9784271397289519
+    },
+    "X003R": {
+        "mean_alignment": 0.9672878798088865,
+        "min_alignment": 0.9332332562203262
+    },
+    "X003R2": {
+        "mean_alignment": 0.967342827974229,
+        "min_alignment": 0.9528286047543771
+    },
+    "Q263": {
+        "mean_alignment": 0.9324681277811402,
+        "min_alignment": 0.9324681277811402
+    },
+    "Q266": {
+        "mean_alignment": 0.8345546822941555,
+        "min_alignment": 0.6744625546262945
+    },
+    "Q269": {
+        "mean_alignment": 0.9189857151708065,
+        "min_alignment": 0.9189857151708065
+    },
+    "Q270": {
+        "mean_alignment": 0.9112182365676006,
+        "min_alignment": 0.7729131497519204
+    },
+    "Q271": {
+        "mean_alignment": 0.9614065771733286,
+        "min_alignment": 0.9462172748590817
+    },
+    "Q272": {
+        "mean_alignment": 0.8365010243413757,
+        "min_alignment": 0.72158619135071
+    },
+    "Q273": {
+        "mean_alignment": 0.9566375679225871,
+        "min_alignment": 0.9308667376270847
+    },
+    "Q275R": {
+        "mean_alignment": 0.9469392408276578,
+        "min_alignment": 0.9233194390428012
+    },
+    "Q279": {
+        "mean_alignment": 0.9530143993189407,
+        "min_alignment": 0.9237012465184724
+    },
+    "Q281": {
+        "mean_alignment": 0.9465948369998823,
+        "min_alignment": 0.8980334194810039
+    },
+    "Q284": {
+        "mean_alignment": 0.9728927418570024,
+        "min_alignment": 0.9645461776048249
+    },
+    "Q285": {
+        "mean_alignment": 0.9816271693345127,
+        "min_alignment": 0.9816271693345127
+    },
+    "Q287": {
+        "mean_alignment": 0.9564589283475632,
+        "min_alignment": 0.9268436660666931
+    },
+    "Q288R": {
+        "mean_alignment": 0.9604466395922925,
+        "min_alignment": 0.9474226860332907
+    },
+    "Q289": {
+        "mean_alignment": 0.9244846201089317,
+        "min_alignment": 0.8636437510927508
+    },
+    "Q290": {
+        "mean_alignment": 0.8278251723617195,
+        "min_alignment": 0.6353215167930251
+    }
+}
